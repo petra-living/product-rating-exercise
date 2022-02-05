@@ -1,7 +1,24 @@
 
 class RatingController < ApplicationController
+  module SortBy
+    ALL = [
+      RATING = 'rating',
+      CREATED_AT = 'created_at'
+    ].freeze
+  end
+
+  module SortOrder
+    ALL = [
+      DESC = 'desc',
+      ASC = 'asc'
+    ].freeze
+  end
+
   def index
-    @product_ratings = Product.find(show_params[:id]).product_ratings.order(created_at: :desc)
+    sort_by = index_params[:sort_by] || SortBy::CREATED_AT
+    sort_order = index_params[:sort_order] || SortOrder::DESC
+
+    @product_ratings = Product.find(index_params[:id]).product_ratings.order(sort_by + ' ' + sort_order)
 
     render json: @product_ratings, status: :ok
   end
@@ -23,8 +40,8 @@ class RatingController < ApplicationController
 
   private
 
-  def show_params
-    params.permit(:id)
+  def index_params
+    params.permit(:id, :sort_by, :sort_order)
   end
 
   def create_params
