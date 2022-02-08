@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   def index
-    @reviews = Review.all
+    @reviews = Review.all.order(order_param) if params[:sort].present?
 
     render json: @reviews, status: :ok
   end
@@ -13,7 +13,22 @@ class ReviewsController < ApplicationController
 
   private
 
+  def order_param
+    values_hash = {
+      'rating' => 'rating ASC',
+      '-rating' => 'rating DESC',
+      'date' => 'created_at ASC',
+      '-date' => 'created_at DESC'
+    }
+    # order by date DESC unless param is found
+    if values_hash[params[:sort]].present?
+      values_hash[params[:sort]]
+    else
+      'created_at DESC'
+    end
+  end
+
   def show_params
-    params.permit(:id)
+    params.permit(:id, :sort)
   end
 end
