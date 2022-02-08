@@ -1,14 +1,14 @@
 class ReviewsController < ApplicationController
   def index
-    @reviews = Review.all.order(order_param) if params[:sort].present?
+    @reviews = Review.all.order(order_param)
 
-    render json: @reviews, status: :ok
+    render json: ReviewSerializer.new(@reviews), status: :ok
   end
 
   def show
     @review = Review.find(show_params[:id])
 
-    render json: @review, status: :ok
+    render json: ReviewSerializer.new(@review), status: :ok
   end
 
   private
