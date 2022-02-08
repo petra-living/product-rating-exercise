@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ProductController < ApplicationController
+class ProductsController < ApplicationController
   def index
     @products = Product.all
 

@@ -2,5 +2,5 @@
 
 Rails.application.routes.draw do
   resources :reviews
-  resources :product, only: [:show, :index]
+  resources :products, only: [:show, :index]
 end
