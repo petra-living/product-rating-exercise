@@ -18,6 +18,8 @@
 class Product < ApplicationRecord
   has_many :reviews
 
+  validates :name, presence: true, uniqueness: true
+
   def total_average_rating
     1.0 * reviews.sum(:rating) / reviews.count
   end
