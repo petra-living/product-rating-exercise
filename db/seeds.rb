@@ -10,3 +10,8 @@
 5.times do |i|
   Product.create(name: "product-#{i}", description: "Product #{i}")
 end
+
+5.times do |i|
+  rating = rand(1..5)
+  Review.create(author: "Daniel", rating: rating, headline: rating >= 3 ? "Nice Job":"Bad Job", product: Product.all.sample(1).first)
+end
