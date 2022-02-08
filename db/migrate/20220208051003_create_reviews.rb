@@ -8,6 +8,8 @@ class CreateReviews < ActiveRecord::Migration[6.1]
       t.uuid :product_id, null: false
 
       t.timestamps
+
+      t.index :product_id
     end
   end
 end
