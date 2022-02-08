@@ -4,12 +4,12 @@
 #
 #  id         :uuid             not null, primary key
 #  author     :string           not null
-#  body       :string
+#  body       :string           default(""), not null
 #  headline   :string           not null
 #  rating     :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  product_id :uuid
+#  product_id :uuid             not null
 #
 # Foreign Keys
 #

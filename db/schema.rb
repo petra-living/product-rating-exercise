@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 2022_02_08_051330) do
     t.string "author", null: false
     t.integer "rating", null: false
     t.string "headline", null: false
-    t.string "body"
-    t.uuid "product_id"
+    t.string "body", default: "", null: false
+    t.uuid "product_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
